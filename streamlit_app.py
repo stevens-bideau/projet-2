@@ -6,20 +6,6 @@ from sklearn.impute import SimpleImputer
 from sklearn.neighbors import NearestNeighbors
 import numpy as np
 
-# Intégrer le CSS pour l'image de fond
-background_image_url = "https://www.phipix.com/data_projet2/banniere-reco-cine-creuse.png"  # Remplacez par l'URL de votre image
-page_bg_img = f"""
-<style>
-.stApp {{
-    background-image: url("{background_image_url}");
-    background-position: center top 60px; /* caller l'image en centré en haut (top) */
-    background-repeat: no-repeat; /* ne pas répéter l'image en mosaïac */
-    background-color: #262730; /* couleur de fons */
-}}
-</style>
-"""
-st.markdown(page_bg_img, unsafe_allow_html=True)
-
 # Charger les données depuis l'URL
 url = 'https://www.phipix.com/data_projet2/df_final_ml.csv'
 df_ml_reco = pd.read_csv(url)
@@ -89,7 +75,10 @@ def display_movies(movies):
             if movie_index < num_movies:
                 movie = movies.iloc[movie_index]
                 with cols[i]:
-                    image_url = 'https://image.tmdb.org/t/p/original' + movie['poster_path']
+                    if 'poster_path' in movie and pd.notna(movie['poster_path']):
+                        image_url = 'https://image.tmdb.org/t/p/original' + movie['poster_path']
+                    else:
+                        image_url = 'https://via.placeholder.com/100'  # URL d'une image de remplacement
                     st.markdown(f"""
                     <div style="text-align: center;">
                         <img src="{image_url}" width="100" style="border-radius: 8px;">
@@ -108,12 +97,28 @@ st.title(' ')
 st.title(' ')
 st.title(' ')
 
-# Container fixe pour la zone de saisie de texte
+# Appliquer le style CSS pour le conteneur de recherche
+search_container_style = """
+<style>
+    .search-container {
+        background-image: url("https://www.phipix.com/data_projet2/banniere-reco-cine-creuse.png");
+        background-position: center top;
+        background-repeat: no-repeat;
+        background-color: #262730;
+        padding: 20px;
+        border-radius: 8px;
+    }
+</style>
+"""
+st.markdown(search_container_style, unsafe_allow_html=True)
+
+# Container fixe pour la zone de saisie de texte avec la classe personnalisée
 search_container = st.container()
 result_container = st.container()
 selection_container = st.container()
 
 with search_container:
+    st.markdown('<div class="search-container">', unsafe_allow_html=True)
     # Création de colonnes pour aligner le selectbox et le bouton radio côte à côte
     col1, col2 = st.columns([8, 3])
 
@@ -130,6 +135,7 @@ with search_container:
             key="chk_result_nb20",
             horizontal=True
         )
+    st.markdown('</div>', unsafe_allow_html=True)
 
 if selected_title:
     with result_container:
@@ -154,21 +160,20 @@ with selection_container:
 
     with tabs[1]:
         st.header("Historique")
-        crime_movies = df_ml_reco[df_ml_reco['History'] == 1].sample(n=10)
-        display_movies(crime_movies)
+        history_movies = df_ml_reco[df_ml_reco['History'] == 1].sample(n=10)
+        display_movies(history_movies)
 
     with tabs[2]:
         st.header("Drame")
-        crime_movies = df_ml_reco[df_ml_reco['Drama'] == 1].sample(n=10)
-        display_movies(crime_movies)
+        drama_movies = df_ml_reco[df_ml_reco['Drama'] == 1].sample(n=10)
+        display_movies(drama_movies)
 
     with tabs[3]:
         st.header("Action")
-        crime_movies = df_ml_reco[df_ml_reco['Action'] == 1].sample(n=10)
-        display_movies(crime_movies)
+        action_movies = df_ml_reco[df_ml_reco['Action'] == 1].sample(n=10)
+        display_movies(action_movies)
 
     with tabs[4]:
         st.header("Comédie")
-        crime_movies = df_ml_reco[df_ml_reco['Comedy'] == 1].sample(n=10)
-        display_movies(crime_movies)
-
+        comedy_movies = df_ml_reco[df_ml_reco['Comedy'] == 1].sample(n=10)
+        display_movies(comedy_movies)
