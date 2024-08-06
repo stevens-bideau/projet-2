@@ -90,6 +90,22 @@ def display_movies(movies):
                     </div>
                     """, unsafe_allow_html=True)
 
+# Intégrer le CSS pour l'image de fond de toute la page
+background_image_url = "https://www.phipix.com/data_projet2/banniere-reco-cine-creuse.png"
+page_bg_img = f"""
+<style>
+.stApp {{
+    background-image: url("{background_image_url}");
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: #262730;
+}}
+</style>
+"""
+st.markdown(page_bg_img, unsafe_allow_html=True)
+
 # Interface Streamlit
 
 # Titre de l'application // Ciné Creuse - Recommandation de films
@@ -97,28 +113,12 @@ st.title(' ')
 st.title(' ')
 st.title(' ')
 
-# Appliquer le style CSS pour le conteneur de recherche
-search_container_style = """
-<style>
-    .search-container {
-        background-image: url("https://www.phipix.com/data_projet2/banniere-reco-cine-creuse.png");
-        background-position: center top;
-        background-repeat: no-repeat;
-        background-color: #262730;
-        padding: 20px;
-        border-radius: 8px;
-    }
-</style>
-"""
-st.markdown(search_container_style, unsafe_allow_html=True)
-
-# Container fixe pour la zone de saisie de texte avec la classe personnalisée
+# Container fixe pour la zone de saisie de texte
 search_container = st.container()
 result_container = st.container()
 selection_container = st.container()
 
 with search_container:
-    st.markdown('<div class="search-container">', unsafe_allow_html=True)
     # Création de colonnes pour aligner le selectbox et le bouton radio côte à côte
     col1, col2 = st.columns([8, 3])
 
@@ -135,7 +135,6 @@ with search_container:
             key="chk_result_nb20",
             horizontal=True
         )
-    st.markdown('</div>', unsafe_allow_html=True)
 
 if selected_title:
     with result_container:
@@ -177,4 +176,3 @@ with selection_container:
         st.header("Comédie")
         comedy_movies = df_ml_reco[df_ml_reco['Comedy'] == 1].sample(n=10)
         display_movies(comedy_movies)
-
