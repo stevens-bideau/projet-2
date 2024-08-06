@@ -59,8 +59,12 @@ final_features = np.concatenate((tfidf_matrix_array, scaled_features), axis=1)
 imputer = SimpleImputer(strategy='mean')
 final_features = imputer.fit_transform(final_features)
 
+if result_nb20 == False:
+    nbr10_20 = 11
+else: 20
+
 # Utilisation de KNN pour la recherche des voisins les plus proches
-knn = NearestNeighbors(n_neighbors=11, algorithm='auto', metric='cosine')
+knn = NearestNeighbors(n_neighbors=nbr10_20, algorithm='auto', metric='cosine')
 knn.fit(final_features)
 
 def find_similar_movies(movie_title, knn, df, final_features, n_neighbors=11):
@@ -90,12 +94,19 @@ result_container = st.container()
 selection_container = st.container()
 
 with search_container:
-    # Entrée utilisateur avec suggestions automatiques
-    selected_title = st.selectbox('Recherche un film que vous aimez :', [""] + df_ml_reco['title'].tolist())
+    # Création de colonnes pour aligner le selectbox et le checkbox côte à côte
+    col1, col2 = st.columns([4, 1])
+
+    with col1:
+        # Entrée utilisateur avec suggestions automatiques
+        selected_title = st.selectbox('Recherche un film que vous aimez :', df_ml_reco['title'])
+
+    with col2:
+        result_nb20 = st.checkbox('10 > 20 résultats', value=False)
 
 if selected_title:
     with result_container:
-        similar_movies = find_similar_movies(selected_title, knn, df_ml_reco, final_features)
+        similar_movies = find_similar_movies(selected_title, knn, df_ml_reco, final_features, nbr10_20)
         if similar_movies is not None:
             st.write(f'Films similaires à: {selected_title}:')
 
