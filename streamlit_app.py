@@ -132,6 +132,7 @@ st.title(' ')
 search_container = st.container()
 result_container = st.container()
 selection_container = st.container()
+footer_container = st.container()
 
 with search_container:
 
@@ -192,3 +193,6 @@ with selection_container:
         st.header("Comédie")
         comedy_movies = df_ml_reco[df_ml_reco['Comedy'] == 1].sample(n=10)
         display_movies(comedy_movies)
+
+with footer_container:
+    st.image("https://www.phipix.com/data_projet2/DATHANOS.jpg", caption="Dathanos™ 2024 ")
