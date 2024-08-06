@@ -90,21 +90,44 @@ def display_movies(movies):
                     </div>
                     """, unsafe_allow_html=True)
 
-# Intégrer le CSS pour l'image de fond de toute la page
-background_image_url = "https://www.phipix.com/data_projet2/banniere-reco-cine-creuse.png"
+
+
+@st.experimental_memo
+def get_img_as_base64(file):
+    with open(file, "rb") as f:
+        data = f.read()
+    return base64.b64encode(data).decode()
+
+
+img = get_img_as_base64("image.jpg")
+
 page_bg_img = f"""
 <style>
-.stApp {{
-    background-image: url("{background_image_url}");
-    background-size: cover;
-    background-position: center top;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-color: #262730;
+[data-testid="stAppViewContainer"] > .main {{
+background-image: url("https://images.unsplash.com/photo-1501426026826-31c667bdf23d");
+background-size: 180%;
+background-position: top left;
+background-repeat: no-repeat;
+background-attachment: local;
+}}
+
+[data-testid="stSidebar"] > div:first-child {{
+background-image: url("data:image/png;base64,{img}");
+background-position: center; 
+background-repeat: no-repeat;
+background-attachment: fixed;
+}}
+
+[data-testid="stHeader"] {{
+background: rgba(0,0,0,0);
+}}
+
+[data-testid="stToolbar"] {{
+right: 2rem;
 }}
 </style>
 """
-st.markdown(page_bg_img, unsafe_allow_html=False)
+st.markdown(page_bg_img, unsafe_allow_html=True)
 
 # Interface Streamlit
 
