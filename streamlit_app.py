@@ -6,7 +6,6 @@ from sklearn.impute import SimpleImputer
 from sklearn.neighbors import NearestNeighbors
 import numpy as np
 
-
 # Intégrer le CSS pour l'image de fond
 background_image_url = "https://www.phipix.com/data_projet2/banniere-reco-cine-creuse.png"  # Remplacez par l'URL de votre image
 page_bg_img = f"""
@@ -60,10 +59,10 @@ imputer = SimpleImputer(strategy='mean')
 final_features = imputer.fit_transform(final_features)
 
 # Utilisation de KNN pour la recherche des voisins les plus proches
-knn = NearestNeighbors(n_neighbors=21, algorithm='auto', metric='cosine')
+knn = NearestNeighbors(n_neighbors=20, algorithm='auto', metric='cosine')
 knn.fit(final_features)
 
-def find_similar_movies(movie_title, knn, df, final_features, n_neighbors=11):
+def find_similar_movies(movie_title, knn, df, final_features, n_neighbors=10):
     if movie_title not in df['title'].values:
         st.write(f"Le film '{movie_title}' n'a pas été trouvé dans le DataFrame.")
         return None
@@ -91,17 +90,13 @@ selection_container = st.container()
 
 with search_container:
 
-    # Définir l'état initial des bouton radio col 2
-    if "chk_result_nb20" not in st.session_state:
-    st.session_state.visibility = "result_nb20"
-    st.session_state.disabled = True
-    
-    # Création de colonnes pour aligner le selectbox et le checkbox côte à côte
+    # Création de colonnes pour aligner le selectbox et le bouton radio côte à côte
     col1, col2 = st.columns([4, 1])
 
     with col1:
-        # Entrée utilisateur avec suggestions automatiques
-        selected_title = st.selectbox('Recherche un film que vous aimez :', df_ml_reco['title'])
+        # Entrée utilisateur avec suggestions automatiques, initialisée vide
+        options = [""] + df_ml_reco['title'].tolist()
+        selected_title = st.selectbox('Recherche un film que vous aimez :', options)
 
     with col2:
         result_nb20 = st.radio(
@@ -114,7 +109,7 @@ with search_container:
 
 if selected_title:
     with result_container:
-        similar_movies = find_similar_movies(selected_title, knn, df_ml_reco, final_features, nbr10_20)
+        similar_movies = find_similar_movies(selected_title, knn, df_ml_reco, final_features, n_neighbors=result_nb20)
         if similar_movies is not None:
             st.write(f'Films similaires à: {selected_title}:')
 
