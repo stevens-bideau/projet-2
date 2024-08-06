@@ -111,7 +111,7 @@ if selected_title:
     with result_container:
         similar_movies = find_similar_movies(selected_title, knn, df_ml_reco, final_features, n_neighbors=result_nb20 + 1)
         if similar_movies is not None:
-            st.write(f'Films similaires à: {selected_title}: 👇')
+            st.write(f'Films similaires à: f"**{selected_title}**": 👇')
 
             # Exclure le film sélectionné des résultats
             similar_movies = similar_movies[similar_movies['title'] != selected_title]
