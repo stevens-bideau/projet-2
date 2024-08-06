@@ -104,7 +104,7 @@ page_bg_img = f"""
 }}
 </style>
 """
-st.markdown(page_bg_img, unsafe_allow_html=True)
+st.markdown(page_bg_img, unsafe_allow_html=False)
 
 # Interface Streamlit
 
@@ -119,6 +119,20 @@ result_container = st.container()
 selection_container = st.container()
 
 with search_container:
+    # Appliquer le style CSS pour le conteneur de recherche
+search_container_style = """
+<style>
+    .search-container {
+        background-image: url("https://www.phipix.com/data_projet2/banniere-reco-cine-creuse.png");
+        background-position: center top;
+        background-repeat: no-repeat;
+        background-color: #262730;
+        padding: 20px;
+        border-radius: 8px;
+    }
+</style>
+"""
+st.markdown(search_container_style, unsafe_allow_html=True)
     # Création de colonnes pour aligner le selectbox et le bouton radio côte à côte
     col1, col2 = st.columns([8, 3])
 
