@@ -59,13 +59,8 @@ final_features = np.concatenate((tfidf_matrix_array, scaled_features), axis=1)
 imputer = SimpleImputer(strategy='mean')
 final_features = imputer.fit_transform(final_features)
 
-if result_nb20:
-    21
-else:
-    11
-
 # Utilisation de KNN pour la recherche des voisins les plus proches
-knn = NearestNeighbors(n_neighbors=nbr10_20, algorithm='auto', metric='cosine')
+knn = NearestNeighbors(n_neighbors=21, algorithm='auto', metric='cosine')
 knn.fit(final_features)
 
 def find_similar_movies(movie_title, knn, df, final_features, n_neighbors=11):
@@ -109,15 +104,13 @@ with search_container:
         selected_title = st.selectbox('Recherche un film que vous aimez :', df_ml_reco['title'])
 
     with col2:
-        st.radio(
-        "👇 Nbr de suggestion",
-        ["10", "20"],
-        key="chk_result_nb20",
-        label_visibility=11,
-        disabled=21,
-        horizontal=st.session_state.horizontal,
+        result_nb20 = st.radio(
+            "Nbr de suggestions",
+            [10, 20],
+            index=0,
+            key="chk_result_nb20",
+            horizontal=True
         )
-        result_nb20 = st.checkbox('10 > 20 résultats', value=False)
 
 if selected_title:
     with result_container:
