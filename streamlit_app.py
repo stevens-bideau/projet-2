@@ -177,8 +177,7 @@ with selection_container:
         st.header("Policier")
         if st.button('Actualiser les films', key='refresh_crime'):
             sample_and_display('Crime', 'crime_movies')
-        if 'crime_movies' in st.session_state:
-            display_movies(st.session_state['crime_movies'])
+
 
     with tabs[1]:
         st.header("Historique")
