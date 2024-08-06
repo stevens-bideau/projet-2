@@ -61,7 +61,7 @@ final_features = imputer.fit_transform(final_features)
 
 if result_nb20:
     21
-    else:
+else:
     11
 
 # Utilisation de KNN pour la recherche des voisins les plus proches
