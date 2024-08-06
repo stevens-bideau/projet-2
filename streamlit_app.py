@@ -145,4 +145,20 @@ if selected_title:
 
 with selection_container:
     st.markdown("## Notre sélection")
-    
+    tab1, tab2, tab3 = st.tabs(["Policier", "Historique", "Drame", Action, Comédie])
+
+with tab1:
+    st.header("Policier")
+    st.image("https://static.streamlit.io/examples/cat.jpg", width=200)
+with tab2:
+    st.header("Historique")
+    st.image("https://static.streamlit.io/examples/dog.jpg", width=200)
+with tab3:
+    st.header("Drame")
+    st.image("https://static.streamlit.io/examples/owl.jpg", width=200)
+with tab4:
+    st.header("Action")
+    st.image("https://static.streamlit.io/examples/owl.jpg", width=200)
+with tab5:
+    st.header("Comédie")
+    st.image("https://static.streamlit.io/examples/owl.jpg", width=200)
