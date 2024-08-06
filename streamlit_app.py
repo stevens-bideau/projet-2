@@ -133,7 +133,7 @@ if selected_title:
                             <div style="text-align: center; line-height: 1.2; margin-top: 5px;">
                                 <strong>{movie['title']}</strong><br>
                                 Année : {movie['year']}<br>
-                                Distance : {movie['distance']:.2f}
+
                             </div>
                         </div>
                         """, unsafe_allow_html=True)                       
