@@ -91,7 +91,7 @@ selection_container = st.container()
 with search_container:
 
     # Création de colonnes pour aligner le selectbox et le bouton radio côte à côte
-    col1, col2 = st.columns([4, 1])
+    col1, col2 = st.columns([8, 3])
 
     with col1:
         # Entrée utilisateur avec suggestions automatiques, initialisée vide
