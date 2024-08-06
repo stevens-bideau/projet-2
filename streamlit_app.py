@@ -100,7 +100,7 @@ with search_container:
 
     with col2:
         result_nb20 = st.radio(
-            "Nbr de suggestions",
+            "Nbr de suggestions : 👇",
             [10, 15, 20],
             index=0,
             key="chk_result_nb20",
