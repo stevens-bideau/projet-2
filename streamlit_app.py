@@ -96,7 +96,7 @@ with search_container:
     with col1:
         # Entrée utilisateur avec suggestions automatiques, initialisée vide
         options = [""] + df_ml_reco['title'].tolist()
-        selected_title = st.selectbox('Recherche un film que vous aimez :', options)
+        selected_title = st.selectbox('Recherchez un film que vous aimez : 👇', options)
 
     with col2:
         result_nb20 = st.radio(
