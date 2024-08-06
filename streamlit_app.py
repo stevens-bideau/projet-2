@@ -91,7 +91,7 @@ selection_container = st.container()
 
 with search_container:
     # Entrée utilisateur avec suggestions automatiques
-    selected_title = st.selectbox('Recherche un film que vous aimez :', df_ml_reco['title'])
+    selected_title = st.selectbox('Recherche un film que vous aimez :', [""] + df_ml_reco['title'].tolist())
 
 if selected_title:
     with result_container:
