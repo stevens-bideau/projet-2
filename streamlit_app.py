@@ -5,6 +5,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.impute import SimpleImputer
 from sklearn.neighbors import NearestNeighbors
 import numpy as np
+import base64
 
 # Charger les données depuis l'URL
 url = 'https://www.phipix.com/data_projet2/df_final_ml.csv'
