@@ -166,54 +166,39 @@ if selected_title:
 
 with selection_container:
     st.markdown("## Notre sélection")
-    
-    def sample_and_display(category, key):
-        st.session_state[key] = df_ml_reco[df_ml_reco[category] == 1].sample(n=10)
-        display_movies(st.session_state[key])
-    
     tabs = st.tabs(["Policier", "Historique", "Drame", "Action", "Comédie"])
 
     with tabs[0]:
         st.header("Policier")
         if st.button('Actualiser les films', key='refresh_crime'):
-            sample_and_display('Crime', 'crime_movies')
-        if 'crime_movies' in st.session_state:
-            display_movies(st.session_state['crime_movies'])
-        else:
-            sample_and_display('Crime', 'crime_movies')
+            st.experimental_rerun()  # Relancer l'application pour actualiser les films
+        crime_movies = df_ml_reco[df_ml_reco['Crime'] == 1].sample(n=10)
+        display_movies(crime_movies)
 
     with tabs[1]:
         st.header("Historique")
         if st.button('Actualiser les films', key='refresh_history'):
-            sample_and_display('History', 'history_movies')
-        if 'history_movies' in st.session_state:
-            display_movies(st.session_state['history_movies'])
-        else:
-            sample_and_display('History', 'history_movies')
+            st.experimental_rerun()  # Relancer l'application pour actualiser les films
+        history_movies = df_ml_reco[df_ml_reco['History'] == 1].sample(n=10)
+        display_movies(history_movies)
 
     with tabs[2]:
         st.header("Drame")
         if st.button('Actualiser les films', key='refresh_drama'):
-            sample_and_display('Drama', 'drama_movies')
-        if 'drama_movies' in st.session_state:
-            display_movies(st.session_state['drama_movies'])
-        else:
-            sample_and_display('Drama', 'drama_movies')
+            st.experimental_rerun()  # Relancer l'application pour actualiser les films
+        drama_movies = df_ml_reco[df_ml_reco['Drama'] == 1].sample(n=10)
+        display_movies(drama_movies)
 
     with tabs[3]:
         st.header("Action")
         if st.button('Actualiser les films', key='refresh_action'):
-            sample_and_display('Action', 'action_movies')
-        if 'action_movies' in st.session_state:
-            display_movies(st.session_state['action_movies'])
-        else:
-            sample_and_display('Action', 'action_movies')
+            st.experimental_rerun()  # Relancer l'application pour actualiser les films
+        action_movies = df_ml_reco[df_ml_reco['Action'] == 1].sample(n=10)
+        display_movies(action_movies)
 
     with tabs[4]:
         st.header("Comédie")
         if st.button('Actualiser les films', key='refresh_comedy'):
-            sample_and_display('Comedy', 'comedy_movies')
-        if 'comedy_movies' in st.session_state:
-            display_movies(st.session_state['comedy_movies'])
-        else:
-            sample_and_display('Comedy', 'comedy_movies')
+            st.experimental_rerun()  # Relancer l'application pour actualiser les films
+        comedy_movies = df_ml_reco[df_ml_reco['Comedy'] == 1].sample(n=10)
+        display_movies(comedy_movies)
