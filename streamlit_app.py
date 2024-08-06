@@ -60,7 +60,7 @@ imputer = SimpleImputer(strategy='mean')
 final_features = imputer.fit_transform(final_features)
 
 # Utilisation de KNN pour la recherche des voisins les plus proches
-knn = NearestNeighbors(n_neighbors=10, algorithm='auto', metric='cosine')
+knn = NearestNeighbors(n_neighbors=11, algorithm='auto', metric='cosine')
 knn.fit(final_features)
 
 def find_similar_movies(movie_title, knn, df, final_features, n_neighbors=10):
