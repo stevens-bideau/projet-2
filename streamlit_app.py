@@ -149,26 +149,26 @@ with selection_container:
 
     with tabs[0]:
         st.header("Policier")
-        crime_movies = df_ml_reco[df_ml_reco['Crime'] == 1].sample(n=10, random_state=42)
+        crime_movies = df_ml_reco[df_ml_reco['Crime'] == 1].sample(n=10)
         display_movies(crime_movies)
 
     with tabs[1]:
         st.header("Historique")
-        crime_movies = df_ml_reco[df_ml_reco['History'] == 1].sample(n=10, random_state=42)
+        crime_movies = df_ml_reco[df_ml_reco['History'] == 1].sample(n=10)
         display_movies(crime_movies)
 
     with tabs[2]:
         st.header("Drame")
-        crime_movies = df_ml_reco[df_ml_reco['Drama'] == 1].sample(n=10, random_state=42)
+        crime_movies = df_ml_reco[df_ml_reco['Drama'] == 1].sample(n=10)
         display_movies(crime_movies)
 
     with tabs[3]:
         st.header("Action")
-        crime_movies = df_ml_reco[df_ml_reco['Action'] == 1].sample(n=10, random_state=42)
+        crime_movies = df_ml_reco[df_ml_reco['Action'] == 1].sample(n=10)
         display_movies(crime_movies)
 
     with tabs[4]:
         st.header("Comédie")
-        crime_movies = df_ml_reco[df_ml_reco['Comedy'] == 1].sample(n=10, random_state=42)
+        crime_movies = df_ml_reco[df_ml_reco['Comedy'] == 1].sample(n=10)
         display_movies(crime_movies)
 
