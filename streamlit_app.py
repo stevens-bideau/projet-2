@@ -177,3 +177,4 @@ with selection_container:
         st.header("Comédie")
         comedy_movies = df_ml_reco[df_ml_reco['Comedy'] == 1].sample(n=10)
         display_movies(comedy_movies)
+
