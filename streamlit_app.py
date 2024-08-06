@@ -145,7 +145,7 @@ if selected_title:
 
 with selection_container:
     st.markdown("## Notre sélection")
-    tab1, tab2, tab3 = st.tabs(["Policier", "Historique", "Drame", Action, Comédie])
+    tab1, tab2, tab3 = st.tabs(["Policier", "Historique", "Drame", "Action", "Comédie"])
 
 with tab1:
     st.header("Policier")
