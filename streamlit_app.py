@@ -76,6 +76,31 @@ def find_similar_movies(movie_title, knn, df, final_features, n_neighbors=10):
     similar_movies['distance'] = distances[0]
     return similar_movies
 
+# Fonction pour afficher des films avec un style
+def display_movies(movies):
+    num_columns_per_row = 5
+    num_movies = len(movies)
+    num_rows = (num_movies + num_columns_per_row - 1) // num_columns_per_row
+
+    for row in range(num_rows):
+        cols = st.columns(num_columns_per_row)
+        for i in range(num_columns_per_row):
+            movie_index = row * num_columns_per_row + i
+            if movie_index < num_movies:
+                movie = movies.iloc[movie_index]
+                with cols[i]:
+                    image_url = 'https://image.tmdb.org/t/p/original' + movie['poster_path']
+                    st.markdown(f"""
+                    <div style="text-align: center;">
+                        <img src="{image_url}" width="100" style="border-radius: 8px;">
+                        <div style="text-align: center; line-height: 1.2; margin-top: 5px;">
+                            <strong>{movie['title']}</strong><br></div>
+                            <div style="text-align: center; line-height: 1.2; margin-bottom: 10px; font-size: 10px;">
+                            Année : {movie['year']}<br>
+                        </div>
+                    </div>
+                    """, unsafe_allow_html=True)
+
 # Interface Streamlit
 
 # Titre de l'application // Ciné Creuse - Recommandation de films
@@ -89,7 +114,6 @@ result_container = st.container()
 selection_container = st.container()
 
 with search_container:
-
     # Création de colonnes pour aligner le selectbox et le bouton radio côte à côte
     col1, col2 = st.columns([8, 3])
 
@@ -116,32 +140,8 @@ if selected_title:
             # Exclure le film sélectionné des résultats
             similar_movies = similar_movies[similar_movies['title'] != selected_title]
 
-            # Nombre de colonnes par ligne
-            num_columns_per_row = 5
-
-            # Créez des colonnes pour chaque ligne
-            num_movies = len(similar_movies)
-            num_rows = (num_movies + num_columns_per_row - 1) // num_columns_per_row
-            
-            for row in range(num_rows):
-                cols = st.columns(num_columns_per_row)
-                for i in range(num_columns_per_row):
-                    movie_index = row * num_columns_per_row + i
-                    if movie_index < num_movies:
-                        movie = similar_movies.iloc[movie_index]
-                        with cols[i]:
-                            # Créez l'URL de l'image
-                            image_url = 'https://image.tmdb.org/t/p/original' + movie['poster_path']
-                            st.markdown(f"""
-                            <div style="text-align: center;">
-                                <img src="{image_url}" width="100" style="border-radius: 8px;">
-                                <div style="text-align: center; line-height: 1.2; margin-top: 5px;">
-                                    <strong>{movie['title']}</strong><br></div>
-                                    <div style="text-align: center; line-height: 1.2; margin-bottom: 10px; font-size: 10px;">
-                                    Année : {movie['year']}<br>
-                                </div>
-                            </div>
-                            """, unsafe_allow_html=True)
+            # Afficher les films similaires
+            display_movies(similar_movies)
 
 with selection_container:
     st.markdown("## Notre sélection")
@@ -154,21 +154,13 @@ with selection_container:
 
     with tabs[1]:
         st.header("Historique")
-        crime_movies = df_ml_reco[df_ml_reco['History'] == 1].sample(n=10, random_state=42)
-        display_movies(crime_movies)
-
+        st.image("https://static.streamlit.io/examples/dog.jpg", width=200)
     with tabs[2]:
         st.header("Drame")
-        crime_movies = df_ml_reco[df_ml_reco['Drama'] == 1].sample(n=10, random_state=42)
-        display_movies(crime_movies)
-
+        st.image("https://static.streamlit.io/examples/owl.jpg", width=200)
     with tabs[3]:
         st.header("Action")
-        crime_movies = df_ml_reco[df_ml_reco['Action'] == 1].sample(n=10, random_state=42)
-        display_movies(crime_movies)
-
+        st.image("https://static.streamlit.io/examples/owl.jpg", width=200)
     with tabs[4]:
         st.header("Comédie")
-        crime_movies = df_ml_reco[df_ml_reco['Comedy'] == 1].sample(n=10, random_state=42)
-        display_movies(crime_movies)
-
+        st.image("https://static.streamlit.io/examples/owl.jpg", width=200)
