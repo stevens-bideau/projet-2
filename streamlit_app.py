@@ -145,20 +145,30 @@ if selected_title:
 
 with selection_container:
     st.markdown("## Notre sélection")
-    tab1, tab2, tab3 = st.tabs(["Policier", "Historique", "Drame", "Action", "Comédie"])
+    tabs = st.tabs(["Policier", "Historique", "Drame", "Action", "Comédie"])
 
-    with tab1:
+    with tabs[0]:
         st.header("Policier")
-        st.image("https://static.streamlit.io/examples/cat.jpg", width=200)
-    with tab2:
+        crime_movies = df_ml_reco[df_ml_reco['Crime'] == 1].sample(n=10, random_state=42)
+        display_movies(crime_movies)
+
+    with tabs[1]:
         st.header("Historique")
-        st.image("https://static.streamlit.io/examples/dog.jpg", width=200)
-    with tab3:
+        crime_movies = df_ml_reco[df_ml_reco['History'] == 1].sample(n=10, random_state=42)
+        display_movies(crime_movies)
+
+    with tabs[2]:
         st.header("Drame")
-        st.image("https://static.streamlit.io/examples/owl.jpg", width=200)
-    with tab4:
+        crime_movies = df_ml_reco[df_ml_reco['Drama'] == 1].sample(n=10, random_state=42)
+        display_movies(crime_movies)
+
+    with tabs[3]:
         st.header("Action")
-        st.image("https://static.streamlit.io/examples/owl.jpg", width=200)
-    with tab5:
+        crime_movies = df_ml_reco[df_ml_reco['Action'] == 1].sample(n=10, random_state=42)
+        display_movies(crime_movies)
+
+    with tabs[4]:
         st.header("Comédie")
-        st.image("https://static.streamlit.io/examples/owl.jpg", width=200)
+        crime_movies = df_ml_reco[df_ml_reco['Comedy'] == 1].sample(n=10, random_state=42)
+        display_movies(crime_movies)
+
