@@ -197,4 +197,4 @@ with selection_container:
 with footer_container:
     # st.image("https://www.phipix.com/data_projet2/DATHANOS.png", caption="Dathanos™ 2024 ")
     st.markdown('''
-    :rainbow[Datanos™ 2024]''')
+    :rainbow[Dathanos™ 2024]''')
