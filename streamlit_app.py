@@ -198,4 +198,20 @@ with selection_container:
         else:
             sample_and_display('Drama', 'drama_movies')
 
-    with tabs[
+    with tabs[3]:
+        st.header("Action")
+        if st.button('Actualiser les films', key='refresh_action'):
+            sample_and_display('Action', 'action_movies')
+        if 'action_movies' in st.session_state:
+            display_movies(st.session_state['action_movies'])
+        else:
+            sample_and_display('Action', 'action_movies')
+
+    with tabs[4]:
+        st.header("Comédie")
+        if st.button('Actualiser les films', key='refresh_comedy'):
+            sample_and_display('Comedy', 'comedy_movies')
+        if 'comedy_movies' in st.session_state:
+            display_movies(st.session_state['comedy_movies'])
+        else:
+            sample_and_display('Comedy', 'comedy_movies')
