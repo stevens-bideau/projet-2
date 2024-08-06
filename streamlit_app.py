@@ -89,14 +89,20 @@ st.title(' ')
 st.title(' ')
 st.title(' ')
 
+# Container fixe / search zone
+placeholder = st.empty()
+
 # Entrée utilisateur avec suggestions automatiques
-selected_title = st.selectbox('Suggestions', df_ml_reco['title'])
+selected_title = st.selectbox('Recherche un film que vous aimez :', df_ml_reco['title'])
+
+placeholder.empty()
+
 
 # Bouton pour lancer la recherche
 if selected_title:
     similar_movies = find_similar_movies(selected_title, knn, df_ml_reco, final_features)
     if similar_movies is not None:
-        st.write(f'Films similaires à {selected_title}:')
+        st.write(f'Films similaires à: {selected_title}:')
 
         # Nombre de colonnes par ligne
         num_columns_per_row = 5
@@ -104,19 +110,6 @@ if selected_title:
         # Créez des colonnes pour chaque ligne
         num_movies = len(similar_movies)
         num_rows = (num_movies + num_columns_per_row - 1) // num_columns_per_row
-        
-#        for row in range(num_rows):
-#            cols = st.columns(num_columns_per_row)
-#            for i in range(num_columns_per_row):
-#                movie_index = row * num_columns_per_row + i
-#                if movie_index < num_movies:
-#                    movie = similar_movies.iloc[movie_index]
-#                    with cols[i]:
-#                        image_url = 'https://image.tmdb.org/t/p/original' + movie['poster_path']
-#                        st.image(image_url, width=100)
-#                        st.markdown(f"**{movie['title']}**")
-#                        st.markdown(f"{movie['year']}")
-#                        st.markdown(f"Distance: {movie['distance']:.2f}")
         
         for row in range(num_rows):
             cols = st.columns(num_columns_per_row)
@@ -133,5 +126,6 @@ if selected_title:
                             <div style="text-align: center; line-height: 1.2; margin-top: 5px;">
                                 <strong>{movie['title']}</strong><br>
                                 Année : {movie['year']}<br>
+                            </div>
                         </div>
                         """, unsafe_allow_html=True)                       
