@@ -97,8 +97,6 @@ def get_img_as_base64(file):
         data = f.read()
     return base64.b64encode(data).decode()
 
-
-
 page_bg_img = f"""
 <style>
 [data-testid="stAppViewContainer"] > .main {{
@@ -170,25 +168,35 @@ with selection_container:
 
     with tabs[0]:
         st.header("Policier")
+        if st.button('Actualiser les films', key='refresh_crime'):
+            st.experimental_rerun()  # Relancer l'application pour actualiser les films
         crime_movies = df_ml_reco[df_ml_reco['Crime'] == 1].sample(n=10)
         display_movies(crime_movies)
 
     with tabs[1]:
         st.header("Historique")
+        if st.button('Actualiser les films', key='refresh_history'):
+            st.experimental_rerun()  # Relancer l'application pour actualiser les films
         history_movies = df_ml_reco[df_ml_reco['History'] == 1].sample(n=10)
         display_movies(history_movies)
 
     with tabs[2]:
         st.header("Drame")
+        if st.button('Actualiser les films', key='refresh_drama'):
+            st.experimental_rerun()  # Relancer l'application pour actualiser les films
         drama_movies = df_ml_reco[df_ml_reco['Drama'] == 1].sample(n=10)
         display_movies(drama_movies)
 
     with tabs[3]:
         st.header("Action")
+        if st.button('Actualiser les films', key='refresh_action'):
+            st.experimental_rerun()  # Relancer l'application pour actualiser les films
         action_movies = df_ml_reco[df_ml_reco['Action'] == 1].sample(n=10)
         display_movies(action_movies)
 
     with tabs[4]:
         st.header("Comédie")
+        if st.button('Actualiser les films', key='refresh_comedy'):
+            st.experimental_rerun()  # Relancer l'application pour actualiser les films
         comedy_movies = df_ml_reco[df_ml_reco['Comedy'] == 1].sample(n=10)
         display_movies(comedy_movies)
