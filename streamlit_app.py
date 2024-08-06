@@ -90,28 +90,50 @@ st.title(' ')
 st.title(' ')
 
 # Entrée utilisateur avec suggestions automatiques
-movie_title_input = st.text_input('Entrez un titre de film')
-
-selected_title = None  # Initialisation de selected_title
-
-if movie_title_input:
-    matching_titles = df_ml_reco[df_ml_reco['title'].str.contains(movie_title_input, case=False, na=False)]
-    suggestions = matching_titles['title'].tolist()
-    if suggestions:
-        selected_title = st.selectbox('Suggestions', suggestions)
-    else:
-        st.write("Aucun titre correspondant trouvé.")
+selected_title = st.selectbox('Suggestions', df_ml_reco['title'])
 
 # Bouton pour lancer la recherche
-if selected_title and st.button('Trouver un film similaire'):
+if selected_title:
     similar_movies = find_similar_movies(selected_title, knn, df_ml_reco, final_features)
     if similar_movies is not None:
-        st.write('Films similaires à {}:'.format(selected_title))
-        columns = st.columns(len(similar_movies))
-        for i, (index, movie) in enumerate(similar_movies.iterrows()):
-            with columns[i]:
-                image_url = 'https://image.tmdb.org/t/p/original' + movie['poster_path']
-                st.image(image_url, width=100)
-                st.markdown(f"**{movie['title']}**")
-                st.markdown(f"{movie['year']}")
-                st.markdown(f"Distance: {movie['distance']:.2f}")
+        st.write(f'Films similaires à {selected_title}:')
+
+        # Nombre de colonnes par ligne
+        num_columns_per_row = 5
+
+        # Créez des colonnes pour chaque ligne
+        num_movies = len(similar_movies)
+        num_rows = (num_movies + num_columns_per_row - 1) // num_columns_per_row
+        
+#        for row in range(num_rows):
+#            cols = st.columns(num_columns_per_row)
+#            for i in range(num_columns_per_row):
+#                movie_index = row * num_columns_per_row + i
+#                if movie_index < num_movies:
+#                    movie = similar_movies.iloc[movie_index]
+#                    with cols[i]:
+#                        image_url = 'https://image.tmdb.org/t/p/original' + movie['poster_path']
+#                        st.image(image_url, width=100)
+#                        st.markdown(f"**{movie['title']}**")
+#                        st.markdown(f"{movie['year']}")
+#                        st.markdown(f"Distance: {movie['distance']:.2f}")
+        
+        for row in range(num_rows):
+            cols = st.columns(num_columns_per_row)
+            for i in range(num_columns_per_row):
+                movie_index = row * num_columns_per_row + i
+                if movie_index < num_movies:
+                    movie = similar_movies.iloc[movie_index]
+                    with cols[i]:
+                        # Créez l'URL de l'image
+                        image_url = 'https://image.tmdb.org/t/p/original' + movie['poster_path']
+                        st.markdown(f"""
+                        <div style="text-align: center;">
+                            <img src="{image_url}" width="100" style="border-radius: 8px;">
+                            <div style="text-align: center; line-height: 1.2; margin-top: 5px;">
+                                <strong>{movie['title']}</strong><br>
+                                Année : {movie['year']}<br>
+                                Distance : {movie['distance']:.2f}
+                            </div>
+                        </div>
+                        """, unsafe_allow_html=True)                       
