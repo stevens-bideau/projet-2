@@ -102,7 +102,7 @@ img = get_img_as_base64("banniere-reco-cine-creuse.png")
 page_bg_img = f"""
 <style>
 [data-testid="stAppViewContainer"] > .main {{
-background-image: url("https://www.phipix.com/data_projet2/banniere-reco-cine-creuse");
+background-image: url("https://images.unsplash.com/photo-1501426026826-31c667bdf23d");
 background-size: 180%;
 background-position: top left;
 background-repeat: no-repeat;
