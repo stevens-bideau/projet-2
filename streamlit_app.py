@@ -59,9 +59,10 @@ final_features = np.concatenate((tfidf_matrix_array, scaled_features), axis=1)
 imputer = SimpleImputer(strategy='mean')
 final_features = imputer.fit_transform(final_features)
 
-if result_nb20 == False:
-    nbr10_20 = 11
-else: 20
+if result_nb20:
+    21
+    else:
+    11
 
 # Utilisation de KNN pour la recherche des voisins les plus proches
 knn = NearestNeighbors(n_neighbors=nbr10_20, algorithm='auto', metric='cosine')
