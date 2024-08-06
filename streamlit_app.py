@@ -175,16 +175,18 @@ with selection_container:
 
     with tabs[0]:
         st.header("Policier")
+        if 'crime_movies' in st.session_state:
+            display_movies(st.session_state['crime_movies'])
         if st.button('Actualiser les films', key='refresh_crime'):
             sample_and_display('Crime', 'crime_movies')
-
-
+            
     with tabs[1]:
         st.header("Historique")
-        if st.button('Actualiser les films', key='refresh_history'):
-            sample_and_display('History', 'history_movies')
+
         if 'history_movies' in st.session_state:
             display_movies(st.session_state['history_movies'])
+        if st.button('Actualiser les films', key='refresh_history'):
+            sample_and_display('History', 'history_movies')
 
     with tabs[2]:
         st.header("Drame")
