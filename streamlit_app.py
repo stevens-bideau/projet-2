@@ -166,7 +166,7 @@ if selected_title:
 
 with selection_container:
     st.markdown("## Notre sélection")
-
+    
     def sample_and_display(category, key):
         st.session_state[key] = df_ml_reco[df_ml_reco[category] == 1].sample(n=10)
         display_movies(st.session_state[key])
