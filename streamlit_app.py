@@ -103,7 +103,7 @@ page_bg_img = f"""
 <style>
 [data-testid="stAppViewContainer"] > .main {{
 background-image: url("https://www.phipix.com/data_projet2/banniere-reco-cine-creuse.png");
-background-size: 100%;
+background-size: cover;
 background-position: center top 60px;
 background-repeat: no-repeat;
 background-color: #262730; /* couleur de fond */
