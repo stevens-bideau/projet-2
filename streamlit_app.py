@@ -144,3 +144,4 @@ if selected_title:
 
 with selection_container:
     st.markdown("## Notre sélection")
+    
