@@ -137,8 +137,9 @@ if selected_title:
                                 <img src="{image_url}" width="100" style="border-radius: 8px;">
                                 <div style="text-align: center; line-height: 1.2; margin-top: 5px;">
                                     <strong>{movie['title']}</strong><br>
+                                    <div style="text-align: center; line-height: 1.2; margin-top: 5px;">
                                     Année : {movie['year']}<br>
-                                </div>
+                                </div></div>
                             </div>
                             """, unsafe_allow_html=True)
 
