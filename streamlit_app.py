@@ -95,6 +95,12 @@ result_container = st.container()
 selection_container = st.container()
 
 with search_container:
+
+    # Définir l'état initial des bouton radio col 2
+    if "chk_result_nb20" not in st.session_state:
+    st.session_state.visibility = "result_nb20"
+    st.session_state.disabled = True
+    
     # Création de colonnes pour aligner le selectbox et le checkbox côte à côte
     col1, col2 = st.columns([4, 1])
 
@@ -103,6 +109,14 @@ with search_container:
         selected_title = st.selectbox('Recherche un film que vous aimez :', df_ml_reco['title'])
 
     with col2:
+        st.radio(
+        "👇 Nbr de suggestion",
+        ["10", "20"],
+        key="chk_result_nb20",
+        label_visibility=11,
+        disabled=21,
+        horizontal=st.session_state.horizontal,
+        )
         result_nb20 = st.checkbox('10 > 20 résultats', value=False)
 
 if selected_title:
