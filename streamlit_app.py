@@ -189,9 +189,9 @@ with selection_container:
         history_movies = df_ml_reco[df_ml_reco['History'] == 1].sample(n=10)
         display_movies(history_movies)
 
-        if st.button("Recharger une nouvelle sélection"):
-            st.session_state.value = "Recharger une nouvelle sélection"
-        container.header(st.session_state.value)        
+        #if st.button("Recharger une nouvelle sélection"):
+        #    st.session_state.value = "Recharger une nouvelle sélection"
+        #container.header(st.session_state.value)        
 
     with tabs[2]:
         st.header("Drame")
