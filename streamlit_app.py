@@ -92,7 +92,7 @@ def display_movies(movies):
                     </div>
                     """, unsafe_allow_html=True)
                     
-                    if st.button(f"Détails {movie_index}"):
+                    if st.button(f"Détails"):
                         with st.dialog(f"Détails pour {movie['title']}"):
                             st.image(image_url, width=200)
                             st.write(f"Runtime : {movie['runtime']}")
