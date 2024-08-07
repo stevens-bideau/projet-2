@@ -93,8 +93,25 @@ def display_movies(movies):
 
                     # Utiliser 'tconst' comme identifiant unique pour chaque bouton
                     button_key = f"details_button_{movie['tconst']}"
+                    
+                    # Ajouter du CSS pour centrer le bouton
+                    st.markdown(f"""
+                    <div style="text-align: center; margin-top: 10px;">
+                        <button onclick="document.getElementById('{button_key}').click()" style="
+                            padding: 5px 10px;
+                            font-size: 14px;
+                            cursor: pointer;
+                            border: none;
+                            background-color: #007bff;
+                            color: white;
+                            border-radius: 4px;
+                        ">Détails</button>
+                        <button id="{button_key}" style="display: none;">Détails</button>
+                    </div>
+                    """, unsafe_allow_html=True)
+
+                    # Afficher les détails du film dans une boîte de dialogue
                     if st.button("Détails", key=button_key):
-                        # Afficher les détails du film dans une boîte de dialogue
                         with st.dialog(f"Détails pour {movie['title']}"):
                             st.image(image_url, width=300)
                             st.write(f"**Titre :** {movie['title']}")
@@ -103,6 +120,7 @@ def display_movies(movies):
                             st.write(f"**Average Rating :** {movie.get('averageRating', 'N/A')}")
                             st.write(f"**Number of Votes :** {movie.get('numVotes', 'N/A')}")
                             st.write(f"**Description :** {movie.get('description', 'N/A')}")
+
 
 
 
