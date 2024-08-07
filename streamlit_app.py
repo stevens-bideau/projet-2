@@ -170,6 +170,10 @@ with selection_container:
     st.markdown("## Notre sélection")
     tabs = st.tabs(["Policier", "Historique", "Drame", "Action", "Comédie"])
 
+    # Initialiser st.session_state.value si elle n'existe pas
+    if 'value' not in st.session_state:
+        st.session_state.value = " "
+
     with tabs[0]:
         st.header("Policier")
 
