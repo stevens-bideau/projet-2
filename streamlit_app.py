@@ -195,4 +195,4 @@ with selection_container:
         display_movies(comedy_movies)
 
 with footer_container:
-    st.image("https://www.phipix.com/data_projet2/DATHANOS.png", caption="Dathanos™ 2024 ")
+    st.image("https://www.phipix.com/data_projet2/Logo-data-competence-100px.png", caption="Dathanos™ 2024 ")
