@@ -63,7 +63,7 @@ def find_similar_movies(movie_title, knn, df, final_features, n_neighbors=10):
     similar_movies['distance'] = distances[0]
     return similar_movies
 
-# Fonction pour afficher des films avec un style et ajouter le bouton "Détails"
+# Fonction pour afficher des films avec un style et ajouter le lien "Détails"
 def display_movies(movies):
     num_columns_per_row = 5
     num_movies = len(movies)
@@ -87,17 +87,23 @@ def display_movies(movies):
                             <strong>{movie['title']}</strong><br></div>
                             <div style="text-align: center; line-height: 1.2; margin-bottom: 10px; font-size: 10px;">
                             Année : {movie['year']}<br>
-                            <a href="#" id="details_{movie_index}">Détails</a>
+                            <a href="javascript:void(0)" onclick="window.show_details_{movie_index} = true;">Détails</a>
                         </div>
                     </div>
                     """, unsafe_allow_html=True)
 
-                    if st.button(f"Détails {movie_index}"):
+                    # Définir le déclencheur pour ouvrir le modal
+                    if f'show_details_{movie_index}' not in st.session_state:
+                        st.session_state[f'show_details_{movie_index}'] = False
+
+                    if st.session_state[f'show_details_{movie_index}']:
                         with st.dialog(f"Détails pour {movie['title']}"):
                             st.image(image_url, width=200)
                             st.write(f"Runtime : {movie['runtime']}")
                             st.write(f"Average Rating : {movie['averageRating']}")
                             st.write(f"Number of Votes : {movie['numVotes']}")
+                            if st.button("Fermer"):
+                                st.session_state[f'show_details_{movie_index}'] = False
 
 @st.cache_data
 def get_img_as_base64(file):
@@ -234,8 +240,6 @@ with selection_container:
         container.header(st.session_state.value)
 
 with footer_container:
-    #st.image("https://www.phipix.com/data_projet2/Logo-data-competence-100px.png", caption="Dathanos™ 2024 ")
-    #st.markdown("<img src='https://www.phipix.com/data_projet2/Logo-data-competence-100px.png' width='100' style='display: block; margin: 10px auto;'>", unsafe_allow_html=True)
     st.markdown("""
     <div style="text-align: center;">
         <img src='https://www.phipix.com/data_projet2/Logo-data-competence-200px.png' width='150' style='display: block; margin: 10px auto;'>
