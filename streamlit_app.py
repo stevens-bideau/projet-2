@@ -64,6 +64,7 @@ def find_similar_movies(movie_title, knn, df, final_features, n_neighbors=10):
     return similar_movies
 
 # Fonction pour afficher des films avec un bouton pour les détails
+# Fonction pour afficher des films avec un bouton pour les détails
 def display_movies(movies):
     num_columns_per_row = 5
     num_movies = len(movies)
@@ -103,9 +104,6 @@ def display_movies(movies):
                             st.write(f"**Average Rating :** {movie.get('averageRating', 'N/A')}")
                             st.write(f"**Number of Votes :** {movie.get('numVotes', 'N/A')}")
                             st.write(f"**Description :** {movie.get('description', 'N/A')}")
-
-
-
 
 @st.cache_data
 def get_img_as_base64(file):
