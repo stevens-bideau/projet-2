@@ -63,7 +63,7 @@ def find_similar_movies(movie_title, knn, df, final_features, n_neighbors=10):
     similar_movies['distance'] = distances[0]
     return similar_movies
 
-# Fonction pour afficher des films avec un style et ajouter le lien "Détails"
+# Fonction pour afficher des films avec un lien cliquable pour les détails
 def display_movies(movies):
     num_columns_per_row = 5
     num_movies = len(movies)
@@ -87,31 +87,17 @@ def display_movies(movies):
                             <strong>{movie['title']}</strong><br></div>
                             <div style="text-align: center; line-height: 1.2; margin-bottom: 10px; font-size: 10px;">
                             Année : {movie['year']}<br>
-                            <a href="javascript:void(0)" onclick="window.show_details_{movie_index} = true;">Détails</a>
+                            <a href="#!" onclick="document.getElementById('details_{movie_index}').style.display = 'block';">Détails</a>
+                        </div>
+                        <div id='details_{movie_index}' style='display:none; margin-top: 10px;'>
+                            <img src="{image_url}" width="200">
+                            <p>Runtime: {movie.get('runtime', 'N/A')}</p>
+                            <p>Average Rating: {movie.get('averageRating', 'N/A')}</p>
+                            <p>Number of Votes: {movie.get('numVotes', 'N/A')}</p>
+                            <button onclick="document.getElementById('details_{movie_index}').style.display = 'none';">Fermer</button>
                         </div>
                     </div>
                     """, unsafe_allow_html=True)
-                    
-                    if st.button(f"Détails"):
-                        with st.dialog(f"Détails pour {movie['title']}"):
-                            st.image(image_url, width=200)
-                            st.write(f"Runtime : {movie['runtime']}")
-                            st.write(f"Average Rating : {movie['averageRating']}")
-                            st.write(f"Number of Votes : {movie['numVotes']}")
-
-                            
-                    # Définir le déclencheur pour ouvrir le modal
-#                    if f'show_details_{movie_index}' not in st.session_state:
-#                        st.session_state[f'show_details_{movie_index}'] = False
-
-#                    if st.session_state[f'show_details_{movie_index}']:
-#                        with st.dialog(f"Détails pour {movie['title']}"):
-#                            st.image(image_url, width=200)
-#                            st.write(f"Runtime : {movie['runtime']}")
-#                            st.write(f"Average Rating : {movie['averageRating']}")
-#                           st.write(f"Number of Votes : {movie['numVotes']}")
-#                           if st.button("Fermer"):
-#                               st.session_state[f'show_details_{movie_index}'] = False
 
 @st.cache_data
 def get_img_as_base64(file):
