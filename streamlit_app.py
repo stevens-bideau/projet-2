@@ -89,9 +89,8 @@ def display_movies(movies):
                             Année : {movie['year']}<br>
                             """, unsafe_allow_html=True)
                     
-                    # Utiliser un identifiant unique pour chaque bouton
-                    button_key = f"details_button_{movie_index}_{row}"
-                    if st.button(f"Détails", key=button_key):
+                    # Action bouton "Détails"
+                    if st.button(f"Détails"):
                         # Afficher les détails du film dans une boîte de dialogue
                         with st.dialog(f"Détails pour {movie['title']}"):
                             st.image(image_url, width=300)
