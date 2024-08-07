@@ -183,7 +183,7 @@ with selection_container:
         display_movies(crime_movies)
 
         if st.button("Recharger une nouvelle sélection"):
-            st.session_state.value = "Policier"
+            st.session_state.value = "Recharger une nouvelle sélection"
         container.header(st.session_state.value)
 
     with tabs[1]:
