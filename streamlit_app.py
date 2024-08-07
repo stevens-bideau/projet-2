@@ -171,15 +171,16 @@ with selection_container:
     tabs = st.tabs(["Policier", "Historique", "Drame", "Action", "Comédie"])
 
 
-    # Initialiser st.session_state.value si elle n'existe pas
-    if 'Recharger une nouvelle sélection' not in st.session_state:
-        st.session_state.value = " "
+
 
     with tabs[0]:
         st.header("Policier")
         crime_movies = df_ml_reco[df_ml_reco['Crime'] == 1].sample(n=10)
         display_movies(crime_movies)
-
+        
+    # Initialiser st.session_state.value si elle n'existe pas
+    if 'Recharger une nouvelle sélection' not in st.session_state:
+        st.session_state.value = " "
         if st.button("Recharger une nouvelle sélection"):
             st.session_state.value = "Recharger une nouvelle sélection"
         container.header(st.session_state.value)
