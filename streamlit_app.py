@@ -184,7 +184,7 @@ with selection_container:
 
         if st.button("Recharger une nouvelle sélection"):
             st.session_state.policier = "Policier"
-        container.header(st.session_state.value)
+        container.header(st.session_state.policier)
 
     with tabs[1]:
         st.header("Historique")
