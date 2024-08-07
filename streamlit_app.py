@@ -195,9 +195,9 @@ with selection_container:
         display_movies(comedy_movies)
 
 with footer_container:
-    st.markdown("""
-        <div style="text-align: center;">
-            <img src="https://www.phipix.com/data_projet2/Logo-data-competence-BW-dbg.png" alt="Dathanos™ 2024" style="width: 10%;">
-            <p>Dathanos™ 2024</p>
-        </div>
-    """, unsafe_allow_html=True)
+st.markdown("""
+    <div style="text-align: center;">
+        <img src="https://www.phipix.com/data_projet2/Logo-data-competence-BW-dbg.png" alt="Dathanos™ 2024" style="width: 10%;">
+        <p>Dathanos™ 2024</p>
+    </div>
+""", unsafe_allow_html=True)
