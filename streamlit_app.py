@@ -195,6 +195,7 @@ with selection_container:
         display_movies(comedy_movies)
         
     # Initialiser st.session_state.value si elle n'existe pas
+    container = st.container()
     if 'Recharger une nouvelle sélection' not in st.session_state:
         st.session_state.value = " "
         if st.button("Recharger une nouvelle sélection"):
