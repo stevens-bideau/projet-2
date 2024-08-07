@@ -199,7 +199,7 @@ with selection_container:
     if 'Recharger une nouvelle sélection' not in st.session_state:
         st.session_state.value = " "
         if st.button("Recharger une nouvelle sélection"):
-            st.session_state.value = "Recharger une nouvelle sélection"
+            st.session_state.value = " "
         container.header(st.session_state.value)
 
 with footer_container:
