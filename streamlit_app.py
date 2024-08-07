@@ -80,7 +80,7 @@ def display_movies(movies):
                     if 'poster_path' in movie and pd.notna(movie['poster_path']):
                         image_url = 'https://image.tmdb.org/t/p/original' + movie['poster_path']
                     else:
-                        image_url = 'https://via.placeholder.com/100'
+                        image_url = 'https://www.phipix.com/data_rojet2/affiche-film-sans-visuel.jpg'
                     st.markdown(f"""
                     <div style="text-align: center;">
                         <img src="{image_url}" width="100" style="border-radius: 8px;">
@@ -88,7 +88,7 @@ def display_movies(movies):
                             <strong>{movie['title']}</strong><br></div>
                             <div style="text-align: center; line-height: 1.2; margin-bottom: 10px; font-size: 10px;">
                             Année : {movie['year']}<br>
-                            <a href="#" onclick="showDetails('{movie['tconst']}')">Détails</a>
+                            <a href="#" onclick="show_details('{movie['tconst']}')">Détails</a>
                         </div>
                     </div>
                     """, unsafe_allow_html=True)
