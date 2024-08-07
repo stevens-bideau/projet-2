@@ -89,8 +89,10 @@ def display_movies(movies):
                             Année : {movie['year']}<br>
                             """, unsafe_allow_html=True)
                     
-                    # Ajouter le bouton "Détails" avec un identifiant unique
-                    if st.button(f"Détails - {movie['title']}", key=f"details_{movie_index}_{row}"):
+                    # Utiliser un identifiant unique pour chaque bouton
+                    button_key = f"details_button_{movie_index}_{row}"
+                    if st.button(f"Détails - {movie['title']}", key=button_key):
+                        # Afficher les détails du film dans une boîte de dialogue
                         with st.dialog(f"Détails pour {movie['title']}"):
                             st.image(image_url, width=300)
                             st.write(f"**Titre :** {movie['title']}")
@@ -99,6 +101,7 @@ def display_movies(movies):
                             st.write(f"**Average Rating :** {movie.get('averageRating', 'N/A')}")
                             st.write(f"**Number of Votes :** {movie.get('numVotes', 'N/A')}")
                             st.write(f"**Description :** {movie.get('description', 'N/A')}")
+
 
 @st.cache_data
 def get_img_as_base64(file):
