@@ -172,7 +172,7 @@ with selection_container:
 
 
     # Initialiser st.session_state.value si elle n'existe pas
-    if '' not in st.session_state:
+    if 'Recharger une nouvelle sélection' not in st.session_state:
         st.session_state.value = " "
 
     with tabs[0]:
