@@ -63,7 +63,7 @@ def find_similar_movies(movie_title, knn, df, final_features, n_neighbors=10):
     similar_movies['distance'] = distances[0]
     return similar_movies
 
-# Fonction pour afficher des films avec un style
+# Fonction pour afficher des films avec un style et ajouter le bouton "Détails"
 def display_movies(movies):
     num_columns_per_row = 5
     num_movies = len(movies)
@@ -87,33 +87,17 @@ def display_movies(movies):
                             <strong>{movie['title']}</strong><br></div>
                             <div style="text-align: center; line-height: 1.2; margin-bottom: 10px; font-size: 10px;">
                             Année : {movie['year']}<br>
+                            <a href="#" id="details_{movie_index}">Détails</a>
                         </div>
-                        <button onclick="details_{movie_index}">Détails</button>
                     </div>
                     """, unsafe_allow_html=True)
 
-                    if st.button(f"Détails {movie['title']}", key=f"details_{movie_index}"):
-                        st.session_state.selected_movie = movie.to_dict()
-                        st.session_state.show_details = True
-
-def display_movie_details(movie):
-    st.markdown(f"""
-    <div style="text-align: left;">
-        <h2>{movie['title']}</h2>
-        <div style="display: flex; flex-direction: row;">
-            <div>
-                <img src="{'https://image.tmdb.org/t/p/original' + movie['poster_path'] if pd.notna(movie['poster_path']) else 'https://via.placeholder.com/200'}" width="200" style="border-radius: 8px; margin-right: 20px;">
-            </div>
-            <div>
-                <p><strong>Année :</strong> {movie['year']}</p>
-                <p><strong>Durée :</strong> {movie['runtime']} minutes</p>
-                <p><strong>Note moyenne :</strong> {movie['averageRating']}</p>
-                <p><strong>Nombre de votes :</strong> {movie['numVotes']}</p>
-                <p><strong>Genres :</strong> {', '.join([genre for genre in df_ml_reco.columns[6:26] if movie[genre] == 1])}</p>
-            </div>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
+                    if st.button(f"Détails {movie_index}"):
+                        with st.dialog(f"Détails pour {movie['title']}"):
+                            st.image(image_url, width=200)
+                            st.write(f"Runtime : {movie['runtime']}")
+                            st.write(f"Average Rating : {movie['averageRating']}")
+                            st.write(f"Number of Votes : {movie['numVotes']}")
 
 @st.cache_data
 def get_img_as_base64(file):
@@ -187,9 +171,6 @@ if selected_title:
             # Afficher les films similaires
             display_movies(similar_movies)
 
-if 'selected_movie' in st.session_state and st.session_state.show_details:
-    display_movie_details(st.session_state.selected_movie)
-
 with selection_container:
     st.markdown("## Notre sélection")
     tabs = st.tabs(["Policier", "Mystère", "Familiale", "Historique", "Biographique", "Drame", "Western", "Guerre", "Action", "Comédie"])
@@ -253,6 +234,8 @@ with selection_container:
         container.header(st.session_state.value)
 
 with footer_container:
+    #st.image("https://www.phipix.com/data_projet2/Logo-data-competence-100px.png", caption="Dathanos™ 2024 ")
+    #st.markdown("<img src='https://www.phipix.com/data_projet2/Logo-data-competence-100px.png' width='100' style='display: block; margin: 10px auto;'>", unsafe_allow_html=True)
     st.markdown("""
     <div style="text-align: center;">
         <img src='https://www.phipix.com/data_projet2/Logo-data-competence-200px.png' width='150' style='display: block; margin: 10px auto;'>
