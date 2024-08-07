@@ -199,7 +199,7 @@ with footer_container:
     #st.markdown("<img src='https://www.phipix.com/data_projet2/Logo-data-competence-100px.png' width='100' style='display: block; margin: 10px auto;'>", unsafe_allow_html=True)
     st.markdown("""
     <div style="text-align: center;">
-        <img src='https://www.phipix.com/data_projet2/Logo-data-competence-100px.png' width='100' style='display: block; margin: 10px auto;'>
+        <img src='https://www.phipix.com/data_projet2/Logo-data-competence-200px.png' width='100' style='display: block; margin: 10px auto;'>
         <p>Dathanos™ 2024</p>
     </div>
 """, unsafe_allow_html=True)
