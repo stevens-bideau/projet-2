@@ -91,19 +91,27 @@ def display_movies(movies):
                         </div>
                     </div>
                     """, unsafe_allow_html=True)
-
-                    # Définir le déclencheur pour ouvrir le modal
-                    if f'show_details_{movie_index}' not in st.session_state:
-                        st.session_state[f'show_details_{movie_index}'] = False
-
-                    if st.session_state[f'show_details_{movie_index}']:
+                    
+                    if st.button(f"Détails {movie_index}"):
                         with st.dialog(f"Détails pour {movie['title']}"):
                             st.image(image_url, width=200)
                             st.write(f"Runtime : {movie['runtime']}")
                             st.write(f"Average Rating : {movie['averageRating']}")
                             st.write(f"Number of Votes : {movie['numVotes']}")
-                            if st.button("Fermer"):
-                                st.session_state[f'show_details_{movie_index}'] = False
+
+                            
+                    # Définir le déclencheur pour ouvrir le modal
+#                    if f'show_details_{movie_index}' not in st.session_state:
+#                        st.session_state[f'show_details_{movie_index}'] = False
+
+#                    if st.session_state[f'show_details_{movie_index}']:
+#                        with st.dialog(f"Détails pour {movie['title']}"):
+#                            st.image(image_url, width=200)
+#                            st.write(f"Runtime : {movie['runtime']}")
+#                            st.write(f"Average Rating : {movie['averageRating']}")
+#                           st.write(f"Number of Votes : {movie['numVotes']}")
+#                           if st.button("Fermer"):
+#                               st.session_state[f'show_details_{movie_index}'] = False
 
 @st.cache_data
 def get_img_as_base64(file):
