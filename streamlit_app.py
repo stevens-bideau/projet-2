@@ -173,9 +173,9 @@ with selection_container:
     with tabs[0]:
         st.header("Policier")
 
-    if st.button("Baz"):
-        st.session_state.value = "Baz"
-    container.header(st.session_state.value)
+        if st.button("Baz"):
+            st.session_state.value = "Baz"
+        container.header(st.session_state.value)
         
         crime_movies = df_ml_reco[df_ml_reco['Crime'] == 1].sample(n=10)
         display_movies(crime_movies)
