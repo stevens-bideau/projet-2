@@ -166,7 +166,6 @@ if selected_title:
             display_movies(similar_movies)
 
 with selection_container:
-    container = st.container()
     st.markdown("## Notre sélection")
     tabs = st.tabs(["Policier", "Historique", "Drame", "Action", "Comédie"])
 
