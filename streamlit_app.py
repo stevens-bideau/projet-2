@@ -175,21 +175,41 @@ with selection_container:
         display_movies(crime_movies)
         
     with tabs[1]:
-        st.header("Historique")
-        history_movies = df_ml_reco[df_ml_reco['History'] == 1].sample(n=10)
-        display_movies(history_movies) 
+        st.header("Mystère")
+        history_movies = df_ml_reco[df_ml_reco['Mystery'] == 1].sample(n=10)
+        display_movies(mystery_movies) 
 
     with tabs[2]:
-        st.header("Drame")
-        drama_movies = df_ml_reco[df_ml_reco['Drama'] == 1].sample(n=10)
-        display_movies(drama_movies)
+        st.header("Familiale")
+        drama_movies = df_ml_reco[df_ml_reco['Family'] == 1].sample(n=10)
+        display_movies(family_movies)
 
     with tabs[3]:
+        st.header("Historique")
+        action_movies = df_ml_reco[df_ml_reco['History'] == 1].sample(n=10)
+        display_movies(history_movies)
+
+    with tabs[4]:
+        st.header("Biographique")
+        comedy_movies = df_ml_reco[df_ml_reco['Biography'] == 1].sample(n=10)
+        display_movies(biography_movies)
+
+    with tabs[5]:
+        st.header("Drame")
+        history_movies = df_ml_reco[df_ml_reco['Drama'] == 1].sample(n=10)
+        display_movies(drama_movies) 
+
+    with tabs[6]:
+        st.header("Western")
+        drama_movies = df_ml_reco[df_ml_reco['Western'] == 1].sample(n=10)
+        display_movies(western_movies)
+
+    with tabs[7]:
         st.header("Action")
         action_movies = df_ml_reco[df_ml_reco['Action'] == 1].sample(n=10)
         display_movies(action_movies)
 
-    with tabs[4]:
+    with tabs[8]:
         st.header("Comédie")
         comedy_movies = df_ml_reco[df_ml_reco['Comedy'] == 1].sample(n=10)
         display_movies(comedy_movies)
