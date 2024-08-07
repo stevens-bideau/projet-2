@@ -93,20 +93,15 @@ def display_movies(movies):
                     </div>
                     """, unsafe_allow_html=True)
 
-def display_movies(movies):
-    for index, movie in movies.iterrows():
-        button_key = f"details_button_{movie['tconst']}"
-        if st.button("Détails", key=button_key):
-            st.session_state.selected_movie = movie['tconst']
+def show_details(tconst):
+    movie = df_ml_reco[df_ml_reco['tconst'] == tconst].iloc[0]
+    st.dialog(f"Détails pour {movie['title']}", width=600, height=400)
+    st.image('https://image.tmdb.org/t/p/original' + movie['poster_path'], width=200)
+    st.write(f"Année : {movie['year']}")
+    st.write(f"Runtime : {movie.get('runtime', 'N/A')}")
+    st.write(f"Average Rating : {movie.get('averageRating', 'N/A')}")
+    st.write(f"Number of Votes : {movie.get('numVotes', 'N/A')}")
 
-if 'selected_movie' in st.session_state:
-    selected_movie = df_ml_reco[df_ml_reco['tconst'] == st.session_state.selected_movie].iloc[0]
-    st.dialog(f"Détails pour {selected_movie['title']}", width=600, height=400)
-    st.image('https://image.tmdb.org/t/p/original' + selected_movie['poster_path'], width=200)
-    st.write(f"Année : {selected_movie['year']}")
-    st.write(f"Runtime : {selected_movie.get('runtime', 'N/A')}")
-    st.write(f"Average Rating : {selected_movie.get('averageRating', 'N/A')}")
-    st.write(f"Number of Votes : {selected_movie.get('numVotes', 'N/A')}")
 
 
 @st.cache_data
