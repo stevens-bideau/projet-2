@@ -90,7 +90,7 @@ def display_movies(movies):
                             """, unsafe_allow_html=True)
                     
                     # Action bouton "Détails"
-                    if st.button(f"Détails"):
+                    if st.button(f"Détails", key=f"details_button_{movie_index}_{row}"):
                         # Afficher les détails du film dans une boîte de dialogue
                         with st.dialog(f"Détails pour {movie['title']}"):
                             st.image(image_url, width=300)
