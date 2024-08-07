@@ -177,14 +177,14 @@ with selection_container:
 
     # Initialiser st.session_state.value si elle n'existe pas
     if 'Policier' not in st.session_state:
-        st.session_state.policier = " "
+        st.session_state.value = " "
         
         crime_movies = df_ml_reco[df_ml_reco['Crime'] == 1].sample(n=10)
         display_movies(crime_movies)
 
         if st.button("Recharger une nouvelle sélection"):
-            st.session_state.policier = "Policier"
-        container.header(st.session_state.policier)
+            st.session_state.value = "Policier"
+        container.header(st.session_state.value)
 
     with tabs[1]:
         st.header("Historique")
