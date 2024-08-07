@@ -170,24 +170,15 @@ with selection_container:
     st.markdown("## Notre sélection")
     tabs = st.tabs(["Policier", "Historique", "Drame", "Action", "Comédie"])
 
-
-
-
     with tabs[0]:
         st.header("Policier")
         crime_movies = df_ml_reco[df_ml_reco['Crime'] == 1].sample(n=10)
         display_movies(crime_movies)
         
-
-
     with tabs[1]:
         st.header("Historique")
         history_movies = df_ml_reco[df_ml_reco['History'] == 1].sample(n=10)
-        display_movies(history_movies)
-
-        #if st.button("Recharger une nouvelle sélection"):
-        #    st.session_state.value = "Recharger une nouvelle sélection"
-        #container.header(st.session_state.value)        
+        display_movies(history_movies) 
 
     with tabs[2]:
         st.header("Drame")
@@ -204,7 +195,12 @@ with selection_container:
         comedy_movies = df_ml_reco[df_ml_reco['Comedy'] == 1].sample(n=10)
         display_movies(comedy_movies)
         
-
+    # Initialiser st.session_state.value si elle n'existe pas
+    if 'Recharger une nouvelle sélection' not in st.session_state:
+        st.session_state.value = " "
+        if st.button("Recharger une nouvelle sélection"):
+            st.session_state.value = "Recharger une nouvelle sélection"
+        container.header(st.session_state.value)
 
 with footer_container:
     #st.image("https://www.phipix.com/data_projet2/Logo-data-competence-100px.png", caption="Dathanos™ 2024 ")
