@@ -80,6 +80,8 @@ def display_movies(movies):
                         image_url = 'https://image.tmdb.org/t/p/original' + movie['poster_path']
                     else:
                         image_url = 'https://via.placeholder.com/100'  # URL d'une image de remplacement
+                    
+                    # Affichage des informations du film
                     st.markdown(f"""
                     <div style="text-align: center;">
                         <img src="{image_url}" width="100" style="border-radius: 8px;">
@@ -88,10 +90,10 @@ def display_movies(movies):
                             <div style="text-align: center; line-height: 1.2; margin-bottom: 10px; font-size: 10px;">
                             Année : {movie['year']}<br>
                             """, unsafe_allow_html=True)
-                    
-                    # Action bouton "Détails"
-                    button_key = f"details_button_{movie_index}_{row}"
-                    if st.button(f"Détails - {movie['title']}", key=button_key):
+
+                    # Utiliser 'tconst' comme identifiant unique pour chaque bouton
+                    button_key = f"details_button_{movie['tconst']}"
+                    if st.button("Détails", key=button_key):
                         # Afficher les détails du film dans une boîte de dialogue
                         with st.dialog(f"Détails pour {movie['title']}"):
                             st.image(image_url, width=300)
@@ -101,6 +103,7 @@ def display_movies(movies):
                             st.write(f"**Average Rating :** {movie.get('averageRating', 'N/A')}")
                             st.write(f"**Number of Votes :** {movie.get('numVotes', 'N/A')}")
                             st.write(f"**Description :** {movie.get('description', 'N/A')}")
+
 
 
 @st.cache_data
