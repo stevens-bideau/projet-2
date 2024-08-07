@@ -1,0 +1,53 @@
+# Ajout pour augementer du poids sur certains crétères (colonnes)
+
+
+
+
+
+# Définir les poids des colonnes
+column_weights = {
+    'averageRating': 2.0,  # Exemple de pondération de la colonne 'averageRating'
+    # Ajoutez d'autres colonnes et leurs poids ici
+}
+
+# Appliquer les poids
+for col, weight in column_weights.items():
+    features[col] *= weight
+
+
+
+
+dans le contexte
+....
+# Extraction et transformation des titres de films en utilisant TF-IDF
+vectorizer = TfidfVectorizer()
+tfidf_matrix = vectorizer.fit_transform(df_ml_reco['title'])
+
+# Normalisation des autres caractéristiques en excluant la colonne 'year'
+numeric_cols = [col for col in df_ml_reco.select_dtypes(include=['int64', 'float64']).columns if col != 'year']
+features = df_ml_reco[numeric_cols]
+
+# Définir les poids des colonnes
+column_weights = {
+    'averageRating': 2.0,  # Exemple de pondération de la colonne 'averageRating'
+    # Ajoutez d'autres colonnes et leurs poids ici
+}
+
+# Appliquer les poids
+for col, weight in column_weights.items():
+    features[col] *= weight
+
+scaler = StandardScaler()
+scaled_features = scaler.fit_transform(features)
+
+# Combinaison des deux ensembles de caractéristiques
+final_features = np.hstack([tfidf_matrix.toarray(), scaled_features])
+
+# Imputer les valeurs manquantes
+imputer = SimpleImputer(strategy='mean')
+final_features = imputer.fit_transform(final_features)
+
+# Utilisation de KNN pour la recherche des voisins les plus proches
+knn = NearestNeighbors(n_neighbors=10, algorithm='auto', metric='cosine')
+knn.fit(final_features)
+...
