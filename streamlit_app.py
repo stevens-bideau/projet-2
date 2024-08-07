@@ -167,9 +167,9 @@ if selected_title:
 
 with selection_container:
     container = st.container()
-        if st.button("Baz"):
-            st.session_state.value = "Baz"
-        container.header(st.session_state.value)
+    if st.button("Baz"):
+        st.session_state.value = "Baz"
+    container.header(st.session_state.value)
 
     st.markdown("## Notre sélection")
     tabs = st.tabs(["Policier", "Historique", "Drame", "Action", "Comédie"])
