@@ -87,11 +87,10 @@ def display_movies(movies):
                             <strong>{movie['title']}</strong><br></div>
                             <div style="text-align: center; line-height: 1.2; margin-bottom: 10px; font-size: 10px;">
                             Année : {movie['year']}<br>
-                        </div>
-                        """, unsafe_allow_html=True)
+                            """, unsafe_allow_html=True)
                     
-                    # Ajouter le bouton "Détails"
-                    if st.button(f"Détails - {movie['title']}", key=f"details_{movie_index}"):
+                    # Ajouter le bouton "Détails" avec un identifiant unique
+                    if st.button(f"Détails - {movie['title']}", key=f"details_{movie_index}_{row}"):
                         with st.dialog(f"Détails pour {movie['title']}"):
                             st.image(image_url, width=300)
                             st.write(f"**Titre :** {movie['title']}")
