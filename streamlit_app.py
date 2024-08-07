@@ -170,14 +170,14 @@ with selection_container:
     st.markdown("## Notre sélection")
     tabs = st.tabs(["Policier", "Historique", "Drame", "Action", "Comédie"])
 
-    # Initialiser st.session_state.value si elle n'existe pas
-    if 'value' not in st.session_state:
-        st.session_state.value = " "
+
 
     with tabs[0]:
         st.header("Policier")
 
-
+    # Initialiser st.session_state.value si elle n'existe pas
+    if 'value' not in st.session_state:
+        st.session_state.value = " "
         
         crime_movies = df_ml_reco[df_ml_reco['Crime'] == 1].sample(n=10)
         display_movies(crime_movies)
