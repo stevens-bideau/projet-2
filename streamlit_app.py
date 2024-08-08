@@ -80,7 +80,7 @@ def display_movies(movies):
                     if 'poster_path' in movie and pd.notna(movie['poster_path']):
                         image_url = 'https://image.tmdb.org/t/p/original' + movie['poster_path']
                     else:
-                        image_url = 'https://via.placeholder.com/100'  # URL d'une image de remplacement
+                        image_url = 'https://www.phipix.com/data_rojet2/affiche-film-sans-visuel.jpg'  # URL d'une image de remplacement
                     
                     # Affichage des informations du film
                     st.markdown(f"""
