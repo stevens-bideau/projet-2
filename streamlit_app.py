@@ -89,11 +89,11 @@ def display_movies(movies):
                             <strong>{movie['title']}</strong><br></div>
                             <div style="text-align: center; line-height: 1.2; margin-bottom: 10px; font-size: 10px;">
                             Année : {movie['year']}<br>
-                            """, unsafe_allow_html=True)
+                            """""", unsafe_allow_html=True)
 
                     # Utiliser 'tconst' comme identifiant unique pour chaque bouton
                     button_key = f"details_button_{movie['tconst']}"
-                    if st.button("Détails", key=button_key):
+                    if st.button("Détails"):
                         button_dialog(movie['tconst'], image_url)
                         
 # Afficher les détails du film dans une boîte de dialogue
