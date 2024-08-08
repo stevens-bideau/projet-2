@@ -97,10 +97,9 @@ def display_movies(movies):
                         button_dialog(movie['tconst'], image_url)
                         
 # Afficher les détails du film dans une boîte de dialogue
-@st.dialog("Cast your vote")
+@st.dialog(f"Détails pour {movie['title']}")
 def button_dialog(item, image_url):
     movie = df_ml_reco.loc[df_ml_reco['tconst']==item]
-    st.dialog(f"Détails pour {movie['title']}"):
     st.image(image_url, width=300)
     st.write(f"**Titre :** {movie['title']}")
     st.write(f"**Année :** {movie['year']}")
