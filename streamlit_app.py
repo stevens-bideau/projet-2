@@ -213,7 +213,7 @@ with selection_container:
     with tabs[5]:
         st.header("Drame")
         drama_movies = df_ml_reco[df_ml_reco['Drama'] == 1].sample(n=10)
-        display_movies(drama_movies, tab_name="Drame") 
+        display_movies(drama_movies) # , tab_name="Drame"
 
     with tabs[6]:
         st.header("Western")
