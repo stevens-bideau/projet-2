@@ -49,7 +49,7 @@ final_features = imputer.fit_transform(final_features)
 knn = NearestNeighbors(n_neighbors=20, algorithm='auto', metric='cosine')
 knn.fit(final_features)
 
-def find_similar_movies(movie_title, knn, df, final_features, n_neighbors=10, , tab_name="00"):
+def find_similar_movies(movie_title, knn, df, final_features, n_neighbors=10, tab_name="00"):
     if movie_title not in df['title'].values:
         st.write(f"Le film '{movie_title}' n'a pas été trouvé dans le DataFrame.")
         return None
