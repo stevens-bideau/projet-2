@@ -61,7 +61,7 @@ def find_similar_movies(movie_title, knn, df, final_features, n_neighbors=10):
     
     similar_movies = df.iloc[indices[0]].copy()
     similar_movies['distance'] = distances[0]
-    return similar_movies, tab_name="00"
+    return similar_movies
 
 # Fonction pour afficher des films avec un bouton pour les détails
 def display_movies(movies, tab_name=""):
@@ -90,7 +90,7 @@ def display_movies(movies, tab_name=""):
                             <strong>{movie['title']}</strong><br></div>
                             <div style="text-align: center; line-height: 1.2; margin-bottom: 10px; font-size: 10px;">
                             Année : {movie['year']}<br>
-                            """, unsafe_allow_html=True)
+                            """""", unsafe_allow_html=True)
 
                     # Utiliser 'tconst' comme identifiant unique pour chaque bouton
                     button_key = f"{tab_name}_{button_num}_{movie['tconst']}" # button_key = f"details_button_{movie['tconst']}"  // f"{tab_name}_details_button_{movie['tconst']}
@@ -180,7 +180,7 @@ if selected_title:
             similar_movies = similar_movies[similar_movies['title'] != selected_title]
 
             # Afficher les films similaires
-            display_movies(similar_movies)
+            display_movies(similar_movies, tab_name="00")
 
 with selection_container:
     st.markdown("## Notre sélection")
