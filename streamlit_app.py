@@ -49,7 +49,7 @@ final_features = imputer.fit_transform(final_features)
 knn = NearestNeighbors(n_neighbors=20, algorithm='auto', metric='cosine')
 knn.fit(final_features)
 
-def find_similar_movies(movie_title, knn, df, final_features, n_neighbors=10):
+def find_similar_movies(movie_title, knn, df, final_features, n_neighbors=10, , tab_name="00"):
     if movie_title not in df['title'].values:
         st.write(f"Le film '{movie_title}' n'a pas été trouvé dans le DataFrame.")
         return None
@@ -90,7 +90,7 @@ def display_movies(movies, tab_name=""):
                             <strong>{movie['title']}</strong><br></div>
                             <div style="text-align: center; line-height: 1.2; margin-bottom: 10px; font-size: 10px;">
                             Année : {movie['year']}<br>
-                            """, unsafe_allow_html=True)
+                            """""", unsafe_allow_html=True)
 
                     # Utiliser 'tconst' comme identifiant unique pour chaque bouton
                     button_key = f"{tab_name}_{button_num}_{movie['tconst']}" # button_key = f"details_button_{movie['tconst']}"  // f"{tab_name}_details_button_{movie['tconst']}
