@@ -94,7 +94,7 @@ def display_movies(movies):
                     # Utiliser 'tconst' comme identifiant unique pour chaque bouton
                     button_key = f"details_button_{movie['tconst']}"
                     if st.button("Détails", key=button_key):
-                        button_dialog({movie['tconst'], image_url)
+                        button_dialog(movie['tconst'], image_url)
                         
 # Afficher les détails du film dans une boîte de dialogue
 @st.dialog("Cast your vote")
