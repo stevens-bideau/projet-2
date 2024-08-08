@@ -1,5 +1,3 @@
-VERSION 
-
 import streamlit as st
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -248,3 +246,4 @@ with footer_container:
         <p>Dathanos™ 2024</p>
     </div>
 """, unsafe_allow_html=True)
+
