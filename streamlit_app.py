@@ -103,8 +103,8 @@ def display_movies(movies, tab_name=""):
 def button_dialog(item, image_url):
     movie = df_ml_reco.loc[df_ml_reco['tconst']==item]
     st.image(image_url, width=300)
-    st.write(f"**Titre :** {movie.get['title', 'N/A']}")
-    st.write(f"**Année :** {movie.get['year', 'N/A']}")
+    st.write(f"**Titre :** {movie.get('title', 'N/A')}")
+    st.write(f"**Année :** {movie.get('year', 'N/A')}")
     st.write(f"**Runtime :** {movie.get('runtime', 'N/A')}")
     st.write(f"**Average Rating :** {movie.get('averageRating', 'N/A')}")
     st.write(f"**Number of Votes :** {movie.get('numVotes', 'N/A')}")
