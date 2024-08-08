@@ -188,52 +188,52 @@ with selection_container:
     with tabs[0]:
         st.header("Policier")
         crime_movies = df_ml_reco[df_ml_reco['Crime'] == 1].sample(n=10)
-        display_movies(crime_movies, tab_name="Policier") # , tab_name="Policier"
+        display_movies(crime_movies, tab_name="crime_movies") # , tab_name="Policier"
         
     with tabs[1]:
         st.header("Mystère")
         mystery_movies = df_ml_reco[df_ml_reco['Mystery'] == 1].sample(n=10)
-        display_movies(mystery_movies, tab_name="Mystère") # , tab_name="Mystère"
+        display_movies(mystery_movies, tab_name="mystery_movies") # , tab_name="Mystère"
 
     with tabs[2]:
         st.header("Familiale")
         family_movies = df_ml_reco[df_ml_reco['Family'] == 1].sample(n=10)
-        display_movies(family_movies, tab_name="Familiale") # , tab_name="Familiale"
+        display_movies(family_movies, tab_name="family_movies") # , tab_name="Familiale"
 
     with tabs[3]:
         st.header("Historique")
         history_movies = df_ml_reco[df_ml_reco['History'] == 1].sample(n=10)
-        display_movies(history_movies, tab_name="Historique") # , tab_name="Historique"
+        display_movies(history_movies, tab_name="history_movies") # , tab_name="Historique"
 
     with tabs[4]:
         st.header("Biographique")
         biography_movies = df_ml_reco[df_ml_reco['Biography'] == 1].sample(n=10)
-        display_movies(biography_movies, tab_name="Biographique") # , tab_name="Biographique"
+        display_movies(biography_movies, tab_name="biography_movies") # , tab_name="Biographique"
 
     with tabs[5]:
         st.header("Drame")
         drama_movies = df_ml_reco[df_ml_reco['Drama'] == 1].sample(n=10)
-        display_movies(drama_movies, tab_name="Drame") # , tab_name="Drame"
+        display_movies(drama_movies, tab_name="drama_movies") # , tab_name="Drame"
 
     with tabs[6]:
         st.header("Western")
         western_movies = df_ml_reco[df_ml_reco['Western'] == 1].sample(n=10)
-        display_movies(western_movies, tab_name="Western") # , tab_name="Western"
+        display_movies(western_movies, tab_name="western_movies") # , tab_name="Western"
 
     with tabs[7]:
         st.header("Guerre")
         war_movies = df_ml_reco[df_ml_reco['War'] == 1].sample(n=10)
-        display_movies(war_movies, tab_name="Guerre") # , tab_name="Guerre"
+        display_movies(war_movies, tab_name="war_movies") # , tab_name="Guerre"
 
     with tabs[8]:
         st.header("Action")
         action_movies = df_ml_reco[df_ml_reco['Action'] == 1].sample(n=10)
-        display_movies(action_movies, tab_name="Action") # , tab_name="Action"
+        display_movies(action_movies, tab_name="action_movies") # , tab_name="Action"
 
     with tabs[9]:
         st.header("Comédie")
         comedy_movies = df_ml_reco[df_ml_reco['Comedy'] == 1].sample(n=10)
-        display_movies(comedy_movies, tab_name="Comédie") # , tab_name="Comédie"
+        display_movies(comedy_movies, tab_name="comedy_movies") # , tab_name="Comédie"
         
     # Initialiser st.session_state.value si elle n'existe pas
     container = st.container()
