@@ -90,7 +90,7 @@ def display_movies(movies, tab_name=""):
                             <strong>{movie['title']}</strong><br></div>
                             <div style="text-align: center; line-height: 1.2; margin-bottom: 10px; font-size: 10px;">
                             Année : {movie['year']}<br>
-                            """""", unsafe_allow_html=True)
+                            """, unsafe_allow_html=True)
 
                     # Utiliser 'tconst' comme identifiant unique pour chaque bouton
                     button_key = f"{tab_name}_{button_num}_{movie['tconst']}" # button_key = f"details_button_{movie['tconst']}"  // f"{tab_name}_details_button_{movie['tconst']}
