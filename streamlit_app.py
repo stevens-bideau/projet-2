@@ -90,7 +90,7 @@ def display_movies(movies, tab_name=""):
                             <strong>{movie['title']}</strong><br></div>
                             <div style="text-align: center; line-height: 1.2; margin-bottom: 10px; font-size: 10px;">
                             Année : {movie['year']}<br>
-                            """, unsafe_allow_html=True)
+                            """""", unsafe_allow_html=True)
 
                     # Utiliser 'tconst' comme identifiant unique pour chaque bouton
                     button_key = f"{tab_name}_{button_num}_{movie['tconst']}" # button_key = f"details_button_{movie['tconst']}"  // f"{tab_name}_details_button_{movie['tconst']}
@@ -103,8 +103,8 @@ def display_movies(movies, tab_name=""):
 def button_dialog(item, image_url):
     movie = df_ml_reco.loc[df_ml_reco['tconst']==item]
     st.image(image_url, width=300)
-    st.write(f"**Titre :** {df_ml_reco.loc[df_ml_reco['title']==item]}")
-    st.write(f"**Année :** {df_ml_reco.loc[df_ml_reco['year']==item}]")
+    st.write(f"**Titre :** {movie.get['title']}")
+    st.write(f"**Année :** {movie.get['year']}")
     st.write(f"**Runtime :** {movie.get('runtime', 'N/A')}")
     st.write(f"**Average Rating :** {movie.get('averageRating', 'N/A')}")
     st.write(f"**Number of Votes :** {movie.get('numVotes', 'N/A')}")
