@@ -92,7 +92,7 @@ def display_movies(movies):
                             """, unsafe_allow_html=True)
 
                     # Utiliser 'tconst' comme identifiant unique pour chaque bouton
-                    button_num[0]
+                    button_num = 0
                     button_key = f"{button_num}_{movie['tconst']}" # button_key = f"details_button_{movie['tconst']}"  // f"{tab_name}_details_button_{movie['tconst']}
                     if st.button("Détails", key=button_key):
                         button_dialog(movie['tconst'], image_url)
