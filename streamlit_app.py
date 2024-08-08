@@ -64,7 +64,6 @@ def find_similar_movies(movie_title, knn, df, final_features, n_neighbors=10):
     return similar_movies
 
 # Fonction pour afficher des films avec un bouton pour les détails
-# Fonction pour afficher des films avec un bouton pour les détails
 def display_movies(movies):
     num_columns_per_row = 5
     num_movies = len(movies)
@@ -90,20 +89,25 @@ def display_movies(movies):
                             <strong>{movie['title']}</strong><br></div>
                             <div style="text-align: center; line-height: 1.2; margin-bottom: 10px; font-size: 10px;">
                             Année : {movie['year']}<br>
-                            """, unsafe_allow_html=True)
+                            """""", unsafe_allow_html=True)
 
                     # Utiliser 'tconst' comme identifiant unique pour chaque bouton
                     button_key = f"details_button_{movie['tconst']}"
                     if st.button("Détails", key=button_key):
-                        # Afficher les détails du film dans une boîte de dialogue
-                        with st.dialog(f"Détails pour {movie['title']}"):
-                            st.image(image_url, width=300)
-                            st.write(f"**Titre :** {movie['title']}")
-                            st.write(f"**Année :** {movie['year']}")
-                            st.write(f"**Runtime :** {movie.get('runtime', 'N/A')}")
-                            st.write(f"**Average Rating :** {movie.get('averageRating', 'N/A')}")
-                            st.write(f"**Number of Votes :** {movie.get('numVotes', 'N/A')}")
-                            st.write(f"**Description :** {movie.get('description', 'N/A')}")
+                        button_dialog({movie['tconst'], image_url)
+                        
+# Afficher les détails du film dans une boîte de dialogue
+@st.dialog("Cast your vote")
+def button_dialog(item, image_url):
+    movie = df_ml_reco.loc[df_ml_reco['tconst']==item]
+    st.dialog(f"Détails pour {movie['title']}"):
+    st.image(image_url, width=300)
+    st.write(f"**Titre :** {movie['title']}")
+    st.write(f"**Année :** {movie['year']}")
+    st.write(f"**Runtime :** {movie.get('runtime', 'N/A')}")
+    st.write(f"**Average Rating :** {movie.get('averageRating', 'N/A')}")
+    st.write(f"**Number of Votes :** {movie.get('numVotes', 'N/A')}")
+    st.write(f"**Description :** {movie.get('description', 'N/A')}")
 
 @st.cache_data
 def get_img_as_base64(file):
