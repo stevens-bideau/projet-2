@@ -64,13 +64,13 @@ def find_similar_movies(movie_title, knn, df, final_features, n_neighbors=10):
     return similar_movies
 
 # Fonction pour afficher des films avec un bouton pour les détails
-def display_movies(movies):
+def display_movies(movies, tab_name=""):
     num_columns_per_row = 5
     num_movies = len(movies)
     num_rows = (num_movies + num_columns_per_row - 1) // num_columns_per_row
 
     button_num = 0
-    for row in range(num_rows, tab_name=""):
+    for row in range(num_rows):
         cols = st.columns(num_columns_per_row)
         for i in range(num_columns_per_row):
             movie_index = row * num_columns_per_row + i
