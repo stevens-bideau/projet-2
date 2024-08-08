@@ -106,9 +106,9 @@ def button_dialog(item, image_url):
     st.image(image_url, width=300)
     st.write(f"**Titre :** {movie.get('title', 'N/A')}")
     st.write(f"**Année :** {movie.get('year', 'N/A')}")
-    st.write(f"**Runtime :** {movie.get('runtime', 'N/A')}")
-    st.write(f"**Average Rating :** {movie.get('averageRating', 'N/A')}")
-    st.write(f"**Number of Votes :** {movie.get('numVotes', 'N/A')}")
+    st.write(f"**Durée :** {movie.get('runtime', 'N/A')}")
+    st.write(f"**Note moyenne :** {movie.get('averageRating', 'N/A')}")
+    st.write(f"**Nombre de Votes :** {movie.get('numVotes', 'N/A')}")
     st.write(f"**Description :** {movie.get('description', 'N/A')}")
 
 @st.cache_data
